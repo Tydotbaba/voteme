@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head}}
+
+<body class="container">
+	<a href="/goto_sign_in">Admin Login</a>
+	<div class="row">
+
+		<div class="col-md-12" style="text-align:center;margin-bottom:48px">
+			<h1>Welcome to E-Voting</h1>
+			<hr />
+			<div style="background:#f0f9f9;border:1px solid #ddd;border-radius:3px;padding:50px">
+				<h1> There is no voting session currently. Please check back later.</h1>
+				<hr />
+				<h2> Next voting process starts on {{vote_start_time}}. </h2>
+				<hr />
+				<h2> Next voting process stops on {{vote_stop_time}}. </h2>
+				<hr />
+				<h1> Watchout!!! </h1>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row" >
+		<div class="col-md-12" style="text-align:center; padding: 20px; text-transform: uppercase; background-color: #f0f9f9;">
+			<footer>
+				<strong> &copy E-voting 2019</footer> </strong>
+			</footer>
+		</div>
+	</div>
+  <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+  NOTE: These should be minified in a build script -->
+  <script type="text/javascript" src="/js/jquery.js"></script>
+
+  <!-- For file uploading. Remove if file upload not necessry -->
+  <script type="text/javascript" src="/js/dropzone.js"></script>
+
+  <!-- Turbo CDN. Better to use CDN than to store locally. -->
+  <script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+
+  <!-- Your app specific code -->
+  <script type="text/javascript" src="/js/app.js"></script>
+</body>
+</html>
