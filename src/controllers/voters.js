@@ -50,7 +50,7 @@ const Voters = {
   getTotalVoters(req, res) {
     const total_voter = VoterModel.findTotalVoters();
     console.log(total_voter)
-    return res.status(200).send('total_voter: ' + total_voter)
+    return res.status(200).json({'total_voter': total_voter})
   },
   /**
    * 
