@@ -63,7 +63,7 @@ const Voters = {
     console.log('voter_tag: ' + voter_tag)
     const voter = VoterModel.findOne(voter_tag);
     if (!voter) {
-      return res.status(404).send({'message': 'voter not found'});
+      return res.status(200).send({'message': 'voter not found'});
     }
     return res.status(200).json(voter);
   },
@@ -80,12 +80,12 @@ const Voters = {
     const updateVotedParam = req.body.voted
     const partyVoted = req.body.party
     if (!voter) {
-      return res.status(404).send({'Error': 'voter not found'});
+      return res.status(200).send({'Error': 'voter not found'});
     }
 
     //check query parameters if empty
     if(!updateAccreditParam && !updateVotedParam){
-      return res.status(404).send({'Error': 'No update parameter found'});
+      return res.status(200).send({'Error': 'No update parameter found'});
     }
 
     //update voter accredition
@@ -99,7 +99,7 @@ const Voters = {
            'message': 'You have been accredited successfully!'
          
         }
-        return res.status(202).send(responseData);
+        return res.status(200).send(responseData);
       }
 
       else if(accredit_state === 'accredit_has_finished'){
@@ -124,7 +124,7 @@ const Voters = {
         let value = 'voted'
         let update = VoterModel.update(voter_tag, value)
         if (!update) {
-          return res.status(404).json({
+          return res.status(200).json({
             'Error': 'Voter has not been accredited!'
           })
         }
@@ -142,7 +142,7 @@ const Voters = {
            'message': 'You have voted successfully!'
          
         }
-        return res.status(202).send(responseData);
+        return res.status(200).send(responseData);
       }
 
       else if(vote_state === 'vote_has_finished'){
