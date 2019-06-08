@@ -13,8 +13,8 @@ const Voters = require('../src/controllers/voters');
 router.post('/voters', Voters.addVoter);
 router.get('/voters', Voters.getTotalVoters);
 router.get('/voters/:id', Voters.getOne);
-router.put('/voters/:id', Voters.update);
+router.post('/voters/:id', Voters.update);
 router.delete('/voters/:id', Voters.delete);
 
 
-module.exports = router
+module.exports = router;

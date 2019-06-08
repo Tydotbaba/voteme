@@ -14,17 +14,73 @@
 	<div class="row dark-gray">
 		<div class="col-md-12 " style="text-align:center;margin-bottom:48px">
 			<div style="background:#f0f9f9;border:1px solid #ddd;border-radius:3px;padding:20px">
-				<h1> Schedule Election</h1>
+				<h1> Schedule New Election</h1>
 			</div>
 		</div>
-		
-		<div class="col-md-4" style="text-align:center;margin-bottom:48px">
-			<form>
-				<input type="date" name="electionDate">
+	</div>
+
+	<div class="row dark-gray">
+		<div style="background:#f0f9f9;border:1px solid #ddd;border-radius:3px;padding:40px; text-align: center;">
+			<form method="POST" action="/rules">
+					<fieldset>	
+					<legend><strong>Register</strong> </legend>
+						<div>
+							<label for="electionDate">Start Date: </label>
+							<input type="date" name="startRegsiterDate">
+							<label for="electionTime">Start Time: </label>
+							<input type="time" name="startRegsiterTime">		
+						</div>
+
+						<div>
+							<label for="electionDate">Stop Date: </label>
+							<input type="date" name="stopRegisterDate">
+							<label for="electionTime">Stop Time: </label>
+							<input type="time" name="stopRegisterTime">		
+						</div>
+					</fieldset>
+					<hr>
+					<fieldset>	
+					<legend><strong>Accredit</strong></legend>
+						<div>
+							<label for="electionDate">Start Date: </label>
+							<input type="date" name="startAccreditDate">
+							<label for="electionTime">Start Time: </label>
+							<input type="time" name="startAccreditTime">	
+						</div>
+
+						<div>
+							<label for="electionDate">Stop Date: </label>
+							<input type="date" name="stopAccreditDate">
+							<label for="electionTime">Stop Time: </label>
+							<input type="time" name="stopAccreditTime">		
+						</div>
+					</fieldset>
+					<hr>
+					<fieldset>	
+					<legend><strong>Vote</strong></legend>
+						<div>
+							<label for="electionDate">Start Date: </label>
+							<input type="date" name="startVoteDate">
+							<label for="electionTime">Start Time: </label>
+							<input type="time" name="startVoteTime">		
+						</div>
+
+						<div>
+							<label for="electionDate">Stop Date: </label>
+							<input type="date" name="stopVoteDate">
+							<label for="electionTime">Stop Time: </label>
+							<input type="time" name="stopVoteTime">		
+						</div>
+					</fieldset>		
+					<fieldset>
+						<legend><strong></strong></legend>
+						<div>
+							<strong>
+								<input type="submit" value="submit" name="Submit">					
+							</strong>
+						</div>						
+					</fieldset>
 			</form>
-			<div style="background:#f0f9f9;border:1px solid #ddd;border-radius:3px;padding:20px">
-				<h1> {{party_C}} votes</h1>
-			</div>
 		</div>
 
 	</div>

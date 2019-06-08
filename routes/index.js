@@ -3,6 +3,8 @@ const turbo = require('turbo360')({site_id: process.env.TURBO_APP_ID})
 const vertex = require('vertex360')({site_id: process.env.TURBO_APP_ID})
 const router = vertex.router()
 
+const rules = require('../src/models/rules')
+
 /*  This is the home route. It renders the index.mustache page from the views directory.
 	Data is rendered using the Mustache templating engine. For more
 	information, view here: https://mustache.github.io/#demo */
@@ -41,21 +43,71 @@ router.get('/goto_sign_in', (req, res) => {
 })
 
 /* This is the signin entry point*/
-router.post('/signIn', (req, res) => {
-	const body = req.body
-	res.json({
-		confirmation: 'success',
-		data: body
-	})
+router.post('/admin', (req, res) => {
+	const admin = {
+		name: 'Tayo',
+		password: '1234'
+	}
+
+	const adminData = req.body
+	if (admin.name !== adminData.name && admin.password !== adminData.password){
+		res.render('error', {error: 'confirmation Failed,  wrong user name or password'})
+	}
+	else{
+		res.render('admin')
+	} 
 })
 
 /*  This route render json data */
-router.get('/admin', (req, res) => {
-	res.json({
-		confirmation: 'success',
-		//app: process.env.TURBO_APP_ID,
-		data: 'this is admin site.'
-	})
+router.post('/rules', (req, res) => {
+	const data = {
+		startVoteTime : req.body.startVoteTime,
+		stopVoteTime : req.body.stopVoteTime,
+		startVoteDate : req.body.startVoteDate,
+		stopVoteDate : req.body.stopVoteDate,
+
+		stopRegisterTime : req.body.stopRegisterTime,
+		stopRegisterTime : req.body.stopRegisterTime,
+		startRegsiterDate : req.body.startRegsiterDate,
+		stopRegisterDate : req.body.stopRegisterDate,
+
+		startAccreditTime : req.body.startAccreditTime,
+		stopAccreditTime : req.body.stopAccreditTime,
+		startAccreditDate : req.body.startAccreditDate,
+		stopAccreditDate : req.body.stopAccreditDate
+	}
+
+	//get the variables for the rules model
+	vote_start_time =  data.startVoteDate + 'T' + data.startVoteTime + 'Z'
+	vote_stop_time =  data.stopVoteDate + 'T' + data.stopVoteTime + 'Z'
+	start_accredit_time =  data.startAccreditDate + 'T' + data.startAccreditTime + 'Z'
+	stop_accredit_time =  data.stopAccreditDate + 'T' + data.stopAccreditTime + 'Z'
+	start_register_date =  data.startRegsiterDate + 'T' + data.startRegsiterTime + 'Z'
+	stop_register_date =  data.stopRegisterDate + 'T' + data.stopRegisterTime + 'Z'
+
+
+	rules.vote_start_time = new Date(vote_start_time)
+	rules.vote_stop_time = new Date(vote_stop_time)
+	rules.start_accredit_time = new Date(start_accredit_time)
+	rules.stop_accredit_time = new Date(stop_accredit_time)
+	rules.start_register_date = new Date(start_register_date)
+	rules.stop_register_date = new Date(stop_register_date)
+
+
+	// res.json({
+	// 	confirmation: 'success',
+	// 	//app: process.env.TURBO_APP_ID,
+	// 	data: data,
+	// 	rules1: rules.vote_start_time,
+	// 	rules2: rules.vote_start_time,
+	// 	rules3: rules.vote_start_time,
+	// 	rules4: rules.vote_start_time,
+	// 	rules5: rules.vote_start_time,
+	// 	rules6: rules.vote_start_time
+	// })
+
+	//redirect the route back to home
+	res.redirect('/')
 })
 
 
