@@ -66,7 +66,7 @@ router.post('/rules', (req, res) => {
 		startVoteDate : req.body.startVoteDate,
 		stopVoteDate : req.body.stopVoteDate,
 
-		stopRegisterTime : req.body.stopRegisterTime,
+		startRegsiterTime : req.body.startRegsiterTime,
 		stopRegisterTime : req.body.stopRegisterTime,
 		startRegsiterDate : req.body.startRegsiterDate,
 		stopRegisterDate : req.body.stopRegisterDate,
@@ -78,16 +78,16 @@ router.post('/rules', (req, res) => {
 	}
 
 	//get the variables for the rules model
-	vote_start_time =  data.startVoteDate + 'T' + data.startVoteTime + 'Z'
-	vote_stop_time =  data.stopVoteDate + 'T' + data.stopVoteTime + 'Z'
+	start_vote_time =  data.startVoteDate + 'T' + data.startVoteTime + 'Z'
+	stop_vote_time =  data.stopVoteDate + 'T' + data.stopVoteTime + 'Z'
 	start_accredit_time =  data.startAccreditDate + 'T' + data.startAccreditTime + 'Z'
 	stop_accredit_time =  data.stopAccreditDate + 'T' + data.stopAccreditTime + 'Z'
 	start_register_date =  data.startRegsiterDate + 'T' + data.startRegsiterTime + 'Z'
 	stop_register_date =  data.stopRegisterDate + 'T' + data.stopRegisterTime + 'Z'
 
 
-	rules.vote_start_time = new Date(vote_start_time)
-	rules.vote_stop_time = new Date(vote_stop_time)
+	rules.start_vote_time = new Date(start_vote_time)
+	rules.stop_vote_time = new Date(stop_vote_time)
 	rules.start_accredit_time = new Date(start_accredit_time)
 	rules.stop_accredit_time = new Date(stop_accredit_time)
 	rules.start_register_date = new Date(start_register_date)
