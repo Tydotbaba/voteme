@@ -89,7 +89,7 @@ app.use('/', (req, res, next) => {
 	if (now < register_start)	register_state = registerState[2]
 	else if ((now >= register_start) && (now <= register_end))	register_state = registerState[0]
 	else register_state = registerState[1]
-
+	
 
 	let accredit_state = ' '
 	let accredit_start = rules.start_accredit_time
@@ -101,8 +101,8 @@ app.use('/', (req, res, next) => {
 
 	//get vote_start_time
 	const data = {}
-	data.vote_start_time = rules.vote_start_time
-	data.vote_stop_time = rules.vote_stop_time
+	data.vote_start_time = rules.start_vote_time
+	data.vote_stop_time = rules.stop_vote_time
 
 	//create reults data
 	const results = {}
@@ -125,7 +125,10 @@ app.use('/', (req, res, next) => {
 	req.vote_state = vote_state
 	req.register_state = register_state
 	req.accredit_state = accredit_state
-
+	
+	console.log(req.data)
+	console.log(req.results)
+	console.log(req.vote_state, req.accredit_state)
 	// continue
 	next()
 })

@@ -93,7 +93,7 @@ router.post('/rules', (req, res) => {
 	rules.start_register_date = new Date(start_register_date)
 	rules.stop_register_date = new Date(stop_register_date)
 
-
+	console.log(rules)
 	// res.json({
 	// 	confirmation: 'success',
 	// 	//app: process.env.TURBO_APP_ID,
