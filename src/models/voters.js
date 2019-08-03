@@ -65,12 +65,18 @@ class Voters {
     const voter = this.voters[index]
     // update voter data
     if(value === 'accredited'){
+      if (voter.accredited === true) {
+        return '' //Error, voter has already been accredited!
+      }
       voter.accredited = true  
     }
     
     if (value === 'voted') {
       if (voter.accredited !== true) {
         return '' //Error, voter has not been accredited!
+      }
+      if (voter.voted === true) {
+        return 'voted' //Error, voter has already voted!
       }
       voter.voted = true  
     }

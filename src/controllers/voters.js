@@ -75,14 +75,12 @@ const Voters = {
    */
   update(req, res) {
     const voter_tag = req.params.id
+    const finger_print = req.body.finger_print
     const voter = VoterModel.findOne(voter_tag);
     const updateAccreditParam = req.body.accredited
     const updateVotedParam = req.body.voted
     const partyVoted = req.body.party
-    if (!voter) {
-      return res.status(200).send({'Error': 'voter not found'});
-    }
-
+    
     //check query parameters if empty
     if(!updateAccreditParam && !updateVotedParam){
       return res.status(200).send({'Error': 'No update parameter found'});
@@ -92,8 +90,26 @@ const Voters = {
     if(updateAccreditParam === true){
       const accredit_state = req.accredit_state
       if(accredit_state === 'accredit_in_session'){
+        if (!voter) {
+          const data = {
+            "message": "Error, voter not found.",
+            "voter_tag": voter_tag
+          }
+          return res.status(200).json(data);
+          //return res.status(200).send({'Error': 'voter not found'});
+        }
+        if (voter.voter_tag !== voter_tag || voter.finger_print !== finger_print) {
+          return res.status(200).json({
+            'Error': 'voter tag and finger print did not match!'
+          })
+        }
         let value = 'accredited'
         let update = VoterModel.update(voter_tag, value)
+        if (!update) {
+          return res.status(200).json({
+            'Error': 'Voter has already been accredited!'
+          })
+        }
         const responseData = {
            'voter': update,
            'message': 'You have been accredited successfully!'
@@ -121,11 +137,30 @@ const Voters = {
     if(updateVotedParam === true){
       const vote_state = req.vote_state
       if(vote_state === 'vote_in_session'){
+        if (!voter) {
+          const data = {
+            "message": "Error, voter not found.",
+            "voter_tag": voter_tag
+          }
+          return res.status(200).json(data);
+          //return res.status(200).send({'Error': 'voter not found'});
+        }
+        if (voter.voter_tag !== voter_tag || voter.finger_print !== finger_print) {
+          return res.status(200).json({
+            'Error': 'voter tag and finger print did not match!'
+          })
+        }
         let value = 'voted'
         let update = VoterModel.update(voter_tag, value)
         if (!update) {
           return res.status(200).json({
             'Error': 'Voter has not been accredited!'
+          })
+        }
+
+        if (update === 'voted') {
+          return res.status(200).json({
+            'Error': 'You have already voted!'
           })
         }
         const party_to_vote_for = party.findIndex(obj => {
