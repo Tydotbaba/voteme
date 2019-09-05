@@ -4,6 +4,7 @@ const vertex = require('vertex360')({site_id: process.env.TURBO_APP_ID})
 const router = vertex.router()
 
 const rules = require('../src/models/rules')
+const voters = require('../src/controllers/voters')
 
 /*  This is the home route. It renders the index.mustache page from the views directory.
 	Data is rendered using the Mustache templating engine. For more
@@ -50,7 +51,7 @@ router.post('/admin', (req, res) => {
 	}
 
 	const adminData = req.body
-	if (admin.name !== adminData.name && admin.password !== adminData.password){
+	if (admin.name !== adminData.user || admin.password !== adminData.password){
 		res.render('error', {error: 'confirmation Failed,  wrong user name or password'})
 	}
 	else{
@@ -106,8 +107,11 @@ router.post('/rules', (req, res) => {
 	// 	rules6: rules.vote_start_time
 	// })
 
+	// delete voter data to start a new voting sesion
+	//voters.deleteAll()
+
 	//redirect the route back to home
-	res.redirect('/')
+	res.redirect('/api/v1/deleteAll')
 })
 
 

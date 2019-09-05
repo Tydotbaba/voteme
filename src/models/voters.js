@@ -95,6 +95,17 @@ class Voters {
     this.voters.splice(index, 1);
     return {};
   }
+
+  /**
+   * 
+   * @param {uuid} id 
+   */
+  deleteAll() {
+    //clear the voters' array
+    this.voters.length = 0 ;
+    return 1;
+  }
+
 }
 
 

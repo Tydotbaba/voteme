@@ -15,6 +15,7 @@ router.get('/voters', Voters.getTotalVoters);
 router.get('/voters/:id', Voters.getOne);
 router.post('/voters/:id', Voters.update);
 router.delete('/voters/:id', Voters.delete);
+router.get('/deleteAll', Voters.deleteAll);
 
 
 module.exports = router;

@@ -208,7 +208,15 @@ const Voters = {
     }
     const ref = VoterModel.delete(req.params.voter_tag);
     return res.sendStatus(204).send(ref);
-  }
+  },
+
+  deleteAll(req, res){
+    const voter = VoterModel.deleteAll();
+    if(voter === 1){
+      console.log('New voting session set, deleted all voter data.')
+    }
+    return res.redirect('/'); 
+  },
 }
 
 

@@ -49,7 +49,7 @@
     "vertex360": "^0.16.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1",
+    "nodemon": "^1.19.2",
     "rimraf": "^2.6.2"
   },
   "deploy": [
