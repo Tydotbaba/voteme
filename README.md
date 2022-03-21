@@ -2,4 +2,4 @@
 
 A voting Platform for organizations; private and public
 
-Built with JavaScript
+Built with Turbo 360 React and JavaScript (Node)
