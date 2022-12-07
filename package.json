@@ -34,7 +34,7 @@
     "path-to-regexp": "0.1.7",
     "pg": "^7.11.0",
     "proxy-addr": "^2.0.3",
-    "qs": "6.5.1",
+    "qs": "6.5.3",
     "range-parser": "^1.2.0",
     "safe-buffer": "5.1.1",
     "send": "0.16.2",
